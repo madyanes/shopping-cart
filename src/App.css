@@ -109,6 +109,10 @@ aside#shopping-cart-detail {
     flex-basis: 70%;
   }
 
+  .group-product-list > ul li {
+    flex-basis: calc(50% - 1rem);
+  }
+
   .group-product-list > aside#shopping-cart-detail {
     flex-basis: 30%;
   }
