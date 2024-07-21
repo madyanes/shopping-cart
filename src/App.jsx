@@ -18,12 +18,12 @@ function App() {
       const existingProduct = productsInCart.find((p) => p.id === product.id)
 
       if (existingProduct) {
-        // Add quantity property to product object which is already in the cart
+        // Update quantity of product which is already in the cart
         return productsInCart.map((p) =>
           p.id === product.id ? { ...p, quantity: p.quantity + 1 } : p
         )
       } else {
-        // Add quantity property to product object which is not in the cart yet
+        // Add quantity property to product which is not in the cart yet
         return [...productsInCart, { ...product, quantity: 1 }]
       }
     })
