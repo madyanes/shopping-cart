@@ -2,6 +2,10 @@
   --box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+* {
+  box-sizing: border-box;
+}
+
 form {
   box-shadow: var(--box-shadow);
   padding: 1rem;
@@ -18,4 +22,50 @@ form label {
 
 input {
   width: 2rem;
+}
+
+ul {
+  box-shadow: var(--box-shadow);
+  padding: 1rem;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+li {
+  box-shadow: var(--box-shadow);
+  padding: 1rem;
+  display: block;
+  display: flex;
+  flex-basis: 100%;
+}
+
+img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  display: block; /* Menghindari jarak bawah yang mungkin muncul */
+  margin-right: 1rem;
+}
+
+.product-title {
+  font-weight: 700;
+}
+
+.product-price {
+  font-size: smaller;
+  color: green;
+  font-weight: bolder;
+}
+
+.product-price::before {
+  content: '$';
+  margin-right: 0.2rem;
+}
+
+.product-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
