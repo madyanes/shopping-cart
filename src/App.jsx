@@ -8,15 +8,21 @@ function getAllProducts() {
 }
 
 function App() {
+  const [shoppingCart, setShoppingCart] = useState([])
+
+  function addProductToCart(product) {
+    setShoppingCart((productsInCart) => [...productsInCart, product])
+  }
+
   return (
     <>
-      <ShoppingCart />
-      <ProductList />
+      <ShoppingCart shoppingCart={shoppingCart} />
+      <ProductList onAddToCart={addProductToCart} />
     </>
   )
 }
 
-function ProductList() {
+function ProductList({ onAddToCart }) {
   const [allProducts, setAllProducts] = useState([])
 
   useEffect(() => {
@@ -26,13 +32,13 @@ function ProductList() {
   return (
     <ul>
       {allProducts.map((product) => (
-        <Product product={product} key={product.id} />
+        <Product product={product} key={product.id} onAddToCart={onAddToCart} />
       ))}
     </ul>
   )
 }
 
-function Product({ product }) {
+function Product({ product, onAddToCart }) {
   return (
     <li>
       <div className='product-image'>
@@ -44,24 +50,29 @@ function Product({ product }) {
           <div className='product-price'>{product.price}</div>
         </div>
         <div>
-          <button>Add to cart</button>
+          <button onClick={() => onAddToCart(product)}>Add to cart</button>
         </div>
       </div>
     </li>
   )
 }
 
-function ShoppingCart() {
+function ShoppingCart({ shoppingCart }) {
+  const totalPrice = shoppingCart.reduce(
+    (total, product) => total + product.price,
+    0
+  )
+
   return (
     <form>
       <div>
         <label htmlFor=''>Total Items</label>
-        <input type='text' value='0' disabled />
+        <input type='text' value={shoppingCart.length} disabled />
       </div>
 
       <div>
         <label htmlFor=''>Total price</label>
-        <input type='text' value='0' disabled />
+        <input type='text' value={totalPrice} disabled />
       </div>
     </form>
   )
