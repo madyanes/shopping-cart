@@ -33,17 +33,47 @@ function App() {
 
 function ProductList({ onAddToCart }) {
   const [allProducts, setAllProducts] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
-    getAllProducts().then((products) => setAllProducts(products))
+    getAllProducts()
+      .then((products) => {
+        setAllProducts(products)
+        setIsLoading(false)
+      })
+      .catch((error) => {
+        setError('Failed to fetch products:', error)
+        setIsLoading(false)
+      })
   }, [])
 
   return (
-    <ul>
-      {allProducts.map((product) => (
-        <Product product={product} key={product.id} onAddToCart={onAddToCart} />
-      ))}
-    </ul>
+    <>
+      {isLoading && (
+        <ul>
+          <li>Loading</li>
+        </ul>
+      )}
+
+      {error && (
+        <ul>
+          <li>{error}</li>
+        </ul>
+      )}
+
+      {!isLoading && (
+        <ul>
+          {allProducts.map((product) => (
+            <Product
+              product={product}
+              key={product.id}
+              onAddToCart={onAddToCart}
+            />
+          ))}
+        </ul>
+      )}
+    </>
   )
 }
 
