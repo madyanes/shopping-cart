@@ -72,7 +72,7 @@ function ShoppingCart({ shoppingCart }) {
 
       <div>
         <label htmlFor=''>Total price</label>
-        <input type='text' value={totalPrice} disabled />
+        <input type='text' value={totalPrice.toFixed(2)} disabled />
       </div>
     </form>
   )
