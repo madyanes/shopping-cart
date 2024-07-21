@@ -31,9 +31,13 @@ function App() {
 
   function updateCart(productId, qty) {
     setShoppingCart((productsInCart) => {
-      return productsInCart.map((product) =>
-        product.id === productId ? { ...product, quantity: qty } : product
-      )
+      if (qty < 1) {
+        return productsInCart.filter((product) => product.id !== productId)
+      } else {
+        return productsInCart.map((product) =>
+          product.id === productId ? { ...product, quantity: qty } : product
+        )
+      }
     })
   }
 
@@ -166,7 +170,6 @@ function ShoppingCartDetail({ shoppingCart, onUpdateCart }) {
 function ShoppingCartItem({ product, onUpdateCart }) {
   function handleChange(e) {
     const qty = parseInt(e.target.value, 10)
-    if (isNaN(qty) || qty < 1) return
     onUpdateCart(product.id, qty)
   }
 
