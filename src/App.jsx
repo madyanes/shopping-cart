@@ -16,8 +16,15 @@ function App() {
 
   return (
     <>
-      <ShoppingCart shoppingCart={shoppingCart} />
-      <ProductList onAddToCart={addProductToCart} />
+      <main>
+        <ShoppingCart shoppingCart={shoppingCart} />
+        <div className='group-product-list'>
+          <ProductList onAddToCart={addProductToCart} />
+          <aside id='shopping-cart-detail'>
+            <ShoppingCartDetail shoppingCart={shoppingCart} />
+          </aside>
+        </div>
+      </main>
     </>
   )
 }
@@ -75,6 +82,39 @@ function ShoppingCart({ shoppingCart }) {
         <input type='text' value={totalPrice.toFixed(2)} disabled />
       </div>
     </form>
+  )
+}
+
+function ShoppingCartDetail({ shoppingCart }) {
+  const groupedProducts = shoppingCart.reduce((acc, product) => {
+    const found = acc.find((item) => item.id === product.id)
+    if (found) {
+      found.quantity += 1
+    } else {
+      acc.push({ ...product, quantity: 1 })
+    }
+    return acc
+  }, [])
+  return (
+    <>
+      <h1>Shopping cart</h1>
+      <ul>
+        {groupedProducts.map((product, index) => (
+          <ShoppingCartItem product={product} key={index} />
+        ))}
+      </ul>
+    </>
+  )
+}
+
+function ShoppingCartItem({ product }) {
+  return (
+    <>
+      <li className='shopping-cart-item'>
+        <div>{product.title}</div>
+        <div>(Qty: {product.quantity})</div>
+      </li>
+    </>
   )
 }
 
