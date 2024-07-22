@@ -43,6 +43,9 @@ function App() {
 
   return (
     <>
+      <header className='site-header'>
+        <SiteHeader />
+      </header>
       <main>
         <div className='shopping-cart-desktop'>
           <ShoppingCart shoppingCart={shoppingCart} />
@@ -190,6 +193,14 @@ function ShoppingCartItem({ product, onUpdateCart }) {
           />
         </div>
       </li>
+    </>
+  )
+}
+
+function SiteHeader() {
+  return (
+    <>
+      <h1>Shopping Cart App</h1>
     </>
   )
 }

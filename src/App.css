@@ -81,6 +81,10 @@ aside#shopping-cart-detail {
   display: none;
 }
 
+.site-header {
+  padding: 1rem;
+}
+
 @media (min-width: 768px) {
   aside#shopping-cart-detail {
     display: block;
