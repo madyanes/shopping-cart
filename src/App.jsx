@@ -44,7 +44,9 @@ function App() {
   return (
     <>
       <main>
-        <ShoppingCart shoppingCart={shoppingCart} />
+        <div className='shopping-cart-desktop'>
+          <ShoppingCart shoppingCart={shoppingCart} />
+        </div>
         <div className='group-product-list'>
           <ProductList onAddToCart={addProductToCart} />
           <aside id='shopping-cart-detail'>

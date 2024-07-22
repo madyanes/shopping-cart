@@ -129,4 +129,8 @@ aside#shopping-cart-detail {
   .shopping-cart-item > div:last-child {
     flex: 1;
   }
+
+  .shopping-cart-desktop {
+    display: none;
+  }
 }
