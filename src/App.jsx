@@ -181,16 +181,21 @@ function ShoppingCartItem({ product, onUpdateCart }) {
     onUpdateCart(product.id, qty)
   }
 
+  function removeProductFromCart(productId) {
+    onUpdateCart(productId, 0)
+  }
+
   return (
     <>
       <li className='shopping-cart-item'>
         <div>{product.title}</div>
-        <div>
+        <div className='shopping-cart-item-control'>
           <input
             type='number'
             value={product.quantity}
             onChange={handleChange}
           />
+          <button onClick={() => removeProductFromCart(product.id)}>❌</button>
         </div>
       </li>
     </>

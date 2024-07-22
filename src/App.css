@@ -7,6 +7,14 @@
   margin: 0;
 }
 
+input[type='number'] {
+  text-align: center;
+}
+
+input[type='number']::-webkit-inner-spin-button {
+  opacity: 1;
+}
+
 form {
   box-shadow: var(--box-shadow);
   padding: 1rem;
@@ -98,6 +106,7 @@ aside#shopping-cart-detail {
 
   aside#shopping-cart-detail ul {
     list-style: none;
+    padding-left: 1rem;
   }
 
   aside#shopping-cart-detail li {
@@ -123,7 +132,9 @@ aside#shopping-cart-detail {
 
   .shopping-cart-item {
     display: flex;
-    gap: 1rem;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-bottom: 1rem;
   }
 
   .shopping-cart-item > div:first-child {
@@ -132,6 +143,19 @@ aside#shopping-cart-detail {
 
   .shopping-cart-item > div:last-child {
     flex: 1;
+  }
+
+  .shopping-cart-item-control {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .shopping-cart-item-control > input {
+    flex: 1;
+  }
+
+  .shopping-cart-item-control > button {
+    flex: 0 0 auto;
   }
 
   .shopping-cart-desktop {
