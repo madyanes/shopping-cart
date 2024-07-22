@@ -153,16 +153,19 @@ function ShoppingCart({ shoppingCart }) {
 function ShoppingCartDetail({ shoppingCart, onUpdateCart }) {
   return (
     <>
-      <h1>Shopping cart</h1>
-      <ul>
-        {shoppingCart.map((product, index) => (
-          <ShoppingCartItem
-            product={product}
-            key={index}
-            onUpdateCart={onUpdateCart}
-          />
-        ))}
-      </ul>
+      <ShoppingCart shoppingCart={shoppingCart} />
+      <div>
+        <h1>Shopping cart</h1>
+        <ul>
+          {shoppingCart.map((product, index) => (
+            <ShoppingCartItem
+              product={product}
+              key={index}
+              onUpdateCart={onUpdateCart}
+            />
+          ))}
+        </ul>
+      </div>
     </>
   )
 }
